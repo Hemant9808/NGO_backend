@@ -1,0 +1,11 @@
+import { createPost, deletePost, getAllPost, getPostById } from "../controllers/postContoller"
+import express from 'express';
+
+const router = express.Router()
+
+router.route('/createPost').post(createPost);
+router.route('/getAllPost').post(getAllPost);
+router.route('/getPostById/:id').post(getPostById);
+router.route('/deletePost').post(deletePost);
+
+export default router;
