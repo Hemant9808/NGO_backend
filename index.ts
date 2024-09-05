@@ -2,10 +2,18 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import { appError } from "./utils/error";
+
+// Route imports
 import userRoutes from "./routes/userRoutes";
 import postRoutes from "./routes/postRoutes";
-import { createPost } from "./controllers/postContoller";
+import paymentRoutes from "./routes/paymentRoutes";
+
+
+// import { createPost } from "./controllers/postContoller";
 import Post from "./models/postSchema";
+
+
+
 const cors = require("cors");
 const app = express();
 const port = 3000;
@@ -35,7 +43,8 @@ app.get("/get/:id", async(req, res) => {
 
 dotenv.config();
 
-const MONGO_URI = process.env.MONGO_URI as string;
+//const MONGO_URI = process.env.MONGO_URI as string;
+const MONGO_URI='mongodb+srv://hemant9808:ySEEecsHJArJfzfA@mydb.ovbqzxf.mongodb.net/chatApp'
 console.log("MONGO_URI", MONGO_URI);
 
 const connect = mongoose
@@ -49,7 +58,7 @@ const connect = mongoose
 
 app.use("/", userRoutes);
 app.use("/", postRoutes);
-
+app.use("/",paymentRoutes)
 export const getPostById = async (req: any, res: any) => {
   try {
     let id = req.params.id;
